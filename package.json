@@ -1,0 +1,46 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha 'src/**/*.spec.js' --require @babel/register --require @babel/polyfill",
+    "dev": "./node_modules/.bin/nodemon -r esm ./src/server.js",
+    "build": "./node_modules/.bin/webpack --mode production",
+    "serve": "node -r esm dist/server.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "request-ip": "^2.1.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.5",
+    "@babel/register": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "core-js": "^3.4.7",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.1",
+    "regenerator-runtime": "^0.13.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wuxinli1025/geo-ip.git"
+  },
+  "author": "Xinli WU <ryan7gm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wuxinli1025/geo-ip/issues"
+  },
+  "homepage": "https://github.com/wuxinli1025/geo-ip#readme"
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/src/server.js"
+    }
+  ],
+  "builds": [
+    {
+      "src": "/src/server.js",
+      "use": "@now/node"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "@node_env",
+    "API_PORT": "@api_port"
+  }
+}
