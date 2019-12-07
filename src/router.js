@@ -3,9 +3,9 @@ import { getClientIp } from 'request-ip';
 import { getGEOIPInfo } from './components/ipData.js';
 const router = Router();
 
-router.get('/:ip?', async (req, res) => {
-  const ip = req.params.ip || getClientIp(req);
-  const result = await getGEOIPInfo({ ip });
+router.get('/:query?', async (req, res) => {
+  const query = req.params.query || getClientIp(req);
+  const result = await getGEOIPInfo({ query });
   res.send(JSON.stringify(result, null, 2));
   res.end();
 });
