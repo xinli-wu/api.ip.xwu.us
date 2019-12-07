@@ -2,13 +2,10 @@ import dns from 'dns';
 import axios from 'axios';
 import isIp from 'is-ip';
 
-const lookupPromise = async (domain) => {
-  return new Promise((resolve, reject) => {
-    dns.lookup(domain, (err, address) => {
-      if (err) reject(err);
-      resolve(address);
-    });
-  });
+const dnsPromises = dns.promises;
+const options = {
+  family: 4,
+  hints: dns.ADDRCONFIG | dns.V4MAPPED
 };
 
 const getGEOIPInfo = async params => {
@@ -19,9 +16,10 @@ const getGEOIPInfo = async params => {
   let result = null;
   if (!isIp(params.query)) {
     try {
-      query.ip = await lookupPromise(query.domain);
-    } catch (error) {
-      result = error;
+      const res = await dnsPromises.lookup(query.domain, options);
+      query.ip = res.address;
+    } catch (ex) {
+      result = ex;
     }
   };
 
