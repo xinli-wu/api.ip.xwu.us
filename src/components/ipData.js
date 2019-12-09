@@ -13,18 +13,19 @@ const getGEOIPInfo = async params => {
     ip: isIp(params.query) ? params.query : null
     , domain: isIp(params.query) ? null : params.query
   };
-  console.log('query', query);
   let result = null;
   if (query.domain) {
     try {
       const res = await dnsPromises.lookup(query.domain, options);
-      console.log('res', res);
-      query.ip = res.address;
-      console.log('queryIn', query);
-      console.log('process.version', process.version);
+      if (!isIp(res.address)) {
+        throw {
+          error: {
+            msg: 'DNS lookup error'
+          }
+        }
+      }
+      query.ip = isIp(res.address) ? res.address : null;
     } catch (ex) {
-      console.log('ex', ex);
-      console.log('process.version', process.version);
       result = ex;
     }
   };
