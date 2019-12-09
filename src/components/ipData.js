@@ -15,7 +15,7 @@ const getGEOIPInfo = async params => {
   };
   console.log('query', query);
   let result = null;
-  if (!isIp(query.ip)) {
+  if (query.domain) {
     try {
       const res = await dnsPromises.lookup(query.domain, options);
       console.log('res', res);
