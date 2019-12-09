@@ -22,6 +22,7 @@ const getGEOIPInfo = async params => {
       query.ip = res.address;
       console.log('queryIn', query);
     } catch (ex) {
+      console.log('ex', ex);
       result = ex;
     }
   };
