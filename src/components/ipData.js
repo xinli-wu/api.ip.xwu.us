@@ -32,7 +32,7 @@ const getGEOIPInfo = async params => {
 
   const url = `https://api.ipgeolocationapi.com/geolocate/${query.ip}`;
   try {
-    const res = await axios.get(url, {});
+    const res = await axios.get(url);
     result = res.data;
     result = { ...query, ...result }
   } catch (ex) {
