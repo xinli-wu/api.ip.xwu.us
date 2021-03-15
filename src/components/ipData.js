@@ -35,6 +35,7 @@ const getGEOIPInfo = async (params) => {
     const res = await axios.get(url);
     result = res.data;
     result = { ...query, ...result };
+    result.full = { ...result };
 
     const keepKey = [
       "ip",
@@ -46,6 +47,8 @@ const getGEOIPInfo = async (params) => {
       "un_locode",
       "languages_official",
       "currency_code",
+      "country_code",
+      "full",
     ];
 
     Object.keys(result).forEach((itm) => {
