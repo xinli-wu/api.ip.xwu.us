@@ -40,6 +40,7 @@ const getGEOIPInfo = async (params) => {
       "ip",
       "domain",
       "name",
+      "continent",
       "region",
       "subregion",
       "un_locode",
