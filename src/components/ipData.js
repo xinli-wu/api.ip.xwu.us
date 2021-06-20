@@ -30,7 +30,7 @@ const getGEOIPInfo = async (params) => {
     }
   }
 
-  const url = `https://api.ipgeolocationapi.com/geolocate/${query.ip}`;
+  const url = `https://ipwhois.app/json/${query.ip}`;
   try {
     const res = await axios.get(url);
     result = res.data;
@@ -40,14 +40,12 @@ const getGEOIPInfo = async (params) => {
     const keepKey = [
       "ip",
       "domain",
-      "name",
-      "continent",
+      "city",
       "region",
-      "subregion",
-      "un_locode",
-      "languages_official",
-      "currency_code",
+      "country",
       "country_code",
+      "continent",
+      "isp",
       "full",
     ];
 
