@@ -1,6 +1,6 @@
-import dns from "dns";
-import axios from "axios";
-import isIp from "is-ip";
+import dns from 'dns';
+import axios from 'axios';
+import isIp from 'is-ip';
 
 const dnsPromises = dns.promises;
 const options = {
@@ -20,7 +20,7 @@ const getGEOIPInfo = async (params) => {
       if (!isIp(res.address)) {
         throw {
           error: {
-            msg: "DNS lookup error",
+            msg: 'DNS lookup error',
           },
         };
       }
@@ -29,26 +29,23 @@ const getGEOIPInfo = async (params) => {
       result = ex;
     }
   }
-
   const url = `https://ipwhois.app/json/${query.ip}`;
   try {
     const res = await axios.get(url);
     result = res.data;
     result = { ...query, ...result };
     result.full = { ...result };
-
     const keepKey = [
-      "ip",
-      "domain",
-      "city",
-      "region",
-      "country",
-      "country_code",
-      "continent",
-      "isp",
-      "full",
+      'ip',
+      'domain',
+      'city',
+      'region',
+      'country',
+      'country_code',
+      'continent',
+      'isp',
+      'full',
     ];
-
     Object.keys(result).forEach((itm) => {
       if (!keepKey.includes(itm)) delete result[itm];
     });

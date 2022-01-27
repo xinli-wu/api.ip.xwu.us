@@ -15,9 +15,9 @@ app.use((_req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   next();
 });
-app.use("/", router);
+app.use('/', router);
 
 app.listen(PORT, () => {
-  console.log(`NODE_ENV=${process.env.NODE_ENV}`)
+  console.log(`NODE_ENV=${process.env.NODE_ENV}`);
   console.log(`Server listening on port ${PORT}!`);
 });

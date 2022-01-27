@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/status', (req, res) => {
   res.json({
-    status: 'running'
+    status: 'running',
   });
   res.end();
 });
