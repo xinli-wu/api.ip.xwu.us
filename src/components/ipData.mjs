@@ -1,6 +1,6 @@
 import dns from 'dns';
 import axios from 'axios';
-import isIp from 'is-ip';
+import { isIP } from 'is-ip';
 
 const dnsPromises = dns.promises;
 const options = {
@@ -10,21 +10,21 @@ const options = {
 
 const getGEOIPInfo = async (params) => {
   const query = {
-    ip: isIp(params.query) ? params.query : null,
-    domain: isIp(params.query) ? null : params.query,
+    ip: isIP(params.query) ? params.query : null,
+    domain: isIP(params.query) ? null : params.query,
   };
   let result = null;
   if (query.domain) {
     try {
       const res = await dnsPromises.lookup(query.domain, options);
-      if (!isIp(res.address)) {
+      if (!isIP(res.address)) {
         throw {
           error: {
             msg: 'DNS lookup error',
           },
         };
       }
-      query.ip = isIp(res.address) ? res.address : null;
+      query.ip = isIP(res.address) ? res.address : null;
     } catch (ex) {
       result = ex;
     }

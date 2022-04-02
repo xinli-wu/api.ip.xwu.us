@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getClientIp } from 'request-ip';
-import { getGEOIPInfo } from './components/ipData.js';
+import { getGEOIPInfo } from './components/ipData.mjs';
 const router = Router();
 
 router.get('/status', (req, res) => {

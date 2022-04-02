@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express, { json } from 'express';
 import helmet from 'helmet';
-import router from './router.js';
+import router from './router.mjs';
 
 dotenv.config();
 const PORT = process.env.API_PORT || 3000;
