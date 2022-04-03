@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import router from './router.mjs';
 
 dotenv.config();
-const PORT = process.env.API_PORT || 3000;
+const PORT = process.env.API_PORT || 4000;
 const app = express();
 
 app.use(helmet());
