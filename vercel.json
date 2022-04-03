@@ -15,5 +15,16 @@
   "env": {
     "NODE_ENV": "@node_env",
     "API_PORT": "@api_port"
-  }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "access-control-allow-origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
 }
