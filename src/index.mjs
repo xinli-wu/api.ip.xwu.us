@@ -15,6 +15,7 @@ app.use((_req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   next();
 });
+
 app.use('/', router);
 
 app.listen(PORT, () => {
