@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha 'src/**/*.spec.js' --require @babel/register --require @babel/polyfill",
     "dev": "nodemon ./src/index.mjs",
-    "build": "esbuild ./src/index.mjs --bundle --platform=node '--define:process.env.NODE_ENV=\"production\"' --outfile=dist/index.js",
+    "build": "esbuild ./src/index.mjs --bundle --platform=node --outfile=dist/index.js",
     "serve": "node -r esm dist/index.js"
   },
   "dependencies": {
