@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "routes": [
     {
       "src": "/(.*)",
@@ -11,9 +10,5 @@
       "src": "/src/index.mjs",
       "use": "@vercel/node"
     }
-  ],
-  "env": {
-    "NODE_ENV": "@node_env",
-    "API_PORT": "@api_port"
-  }
+  ]
 }
