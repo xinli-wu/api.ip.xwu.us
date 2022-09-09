@@ -9,52 +9,32 @@ const options = {
 };
 
 const getGEOIPInfo = async (params) => {
-  const query = {
-    ip: isIP(params.query) ? params.query : null,
-    domain: isIP(params.query) ? null : params.query,
-  };
-  let result = null;
 
-  if (query.domain) {
-    try {
-      const res = await dnsPromises.lookup(query.domain, options);
-      if (!isIP(res.address)) {
-        throw {
-          error: {
-            msg: 'DNS lookup error',
-          },
-        };
-      }
-      query.ip = isIP(res.address) ? res.address : null;
-    } catch (ex) {
-      result = ex;
-    }
+  const query = {
+    ...(isIP(params.query) && { ip: params.query }),
+    ...(!isIP(params.query) && { domain: params.query })
+  };
+
+
+  if ('domain' in query) {
+    const { address, error } = await dnsPromises.lookup(query.domain, options).catch(e => ({ error: { error: true, message: e.message } }));
+
+    if (error) return { error };
+    else query.ip = address;
   }
+
   const url = `https://ipwhois.app/json/${query.ip}`;
-  try {
-    const res = await axios.get(url);
-    result = res.data;
-    result = { ...query, ...result };
-    result.full = { ...result };
-    const keepKey = [
-      'ip',
-      'domain',
-      'city',
-      'region',
-      'country',
-      'country_code',
-      'continent',
-      'isp',
-      'full',
-    ];
-    Object.keys(result).forEach((itm) => {
-      if (!keepKey.includes(itm)) delete result[itm];
-    });
-  } catch (ex) {
-    result = ex;
-  } finally {
-    return result;
-  }
+
+  const { data } = await axios.get(url).catch(e => ({ error: { error: true, message: e.message } }));
+
+  const result = { ...query, ...data, full: { ...data } };
+  const keepKey = ['ip', 'domain', 'city', 'region', 'country', 'country_code', 'continent', 'isp', 'full'];
+
+  Object.keys(result).forEach((x) => {
+    if (!keepKey.includes(x)) delete result[x];
+  });
+
+  return { data: result };
 };
 
 export { getGEOIPInfo };

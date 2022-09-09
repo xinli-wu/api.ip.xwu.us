@@ -12,8 +12,11 @@ router.get('/status', (req, res) => {
 
 router.get('/:query?', async (req, res) => {
   const query = req.params.query || getClientIp(req);
-  const result = await getGEOIPInfo({ query });
-  res.send(JSON.stringify(result, null, 2));
+  const { data, error } = await getGEOIPInfo({ query });
+
+  if (error) res.status(404).send(error);
+
+  res.send(JSON.stringify(data, null, 2));
   res.end();
 });
 
