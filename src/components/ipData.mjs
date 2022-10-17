@@ -8,7 +8,7 @@ const options = {
   hints: dns.ADDRCONFIG | dns.V4MAPPED,
 };
 
-const getGEOIPInfo = async (params) => {
+export async function getGeoIPInfo(params) {
 
   const query = {
     ...(isIP(params.query) && { ip: params.query }),
@@ -37,4 +37,3 @@ const getGEOIPInfo = async (params) => {
   return { data: result };
 };
 
-export { getGEOIPInfo };

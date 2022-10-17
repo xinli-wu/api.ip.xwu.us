@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getClientIp } from 'request-ip';
-import { getGEOIPInfo } from './components/ipData.mjs';
+import { getGeoIPInfo } from './components/ipData.mjs';
 const router = Router();
 
 router.get('/status', (req, res) => {
@@ -12,7 +12,7 @@ router.get('/status', (req, res) => {
 
 router.get('/:query?', async (req, res) => {
   const query = req.params.query || getClientIp(req);
-  const { data, error } = await getGEOIPInfo({ query });
+  const { data, error } = await getGeoIPInfo({ query });
 
   if (error) res.status(404).send(error);
 
