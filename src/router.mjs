@@ -3,11 +3,8 @@ import { getClientIp } from 'request-ip';
 import { getGeoIPInfo } from './components/ipData.mjs';
 const router = Router();
 
-router.get('/status', (req, res) => {
-  res.json({
-    status: 'running',
-  });
-  res.end();
+router.get('/status', (_req, res) => {
+  res.json({ status: 'running', }).end();
 });
 
 router.get('/:query?', async (req, res) => {
@@ -16,8 +13,7 @@ router.get('/:query?', async (req, res) => {
 
   if (error) res.status(404).send(error);
 
-  res.send(JSON.stringify(data, null, 2));
-  res.end();
+  res.send(JSON.stringify(data, null, 2)).end();
 });
 
 export default router;
